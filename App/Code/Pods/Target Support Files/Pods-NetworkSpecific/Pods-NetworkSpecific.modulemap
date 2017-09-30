@@ -1,0 +1,6 @@
+framework module Pods_NetworkSpecific {
+  umbrella header "Pods-NetworkSpecific-umbrella.h"
+
+  export *
+  module * { export * }
+}

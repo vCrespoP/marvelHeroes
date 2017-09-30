@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="SFh-T4-cSV" customClass="HeroCollectionViewCell" customModule="Project" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="286" height="241"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                <rect key="frame" x="0.0" y="0.0" width="286" height="241"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JVd-Qy-mgc">
+                        <rect key="frame" x="0.0" y="0.0" width="286" height="241"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tkf-Tc-jYg">
+                                <rect key="frame" x="0.0" y="0.0" width="286" height="241"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient" translatesAutoresizingMaskIntoConstraints="NO" id="PBK-Z1-jNA">
+                                <rect key="frame" x="0.0" y="0.0" width="286" height="241"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iL7-bf-h94">
+                                <rect key="frame" x="20" y="200.5" width="246" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="iL7-bf-h94" secondAttribute="trailing" constant="20" symbolic="YES" id="2YY-qu-ctz"/>
+                            <constraint firstAttribute="bottom" secondItem="iL7-bf-h94" secondAttribute="bottom" constant="20" symbolic="YES" id="IAz-tq-7ad"/>
+                            <constraint firstItem="PBK-Z1-jNA" firstAttribute="top" secondItem="JVd-Qy-mgc" secondAttribute="top" id="ODx-Mv-l7e"/>
+                            <constraint firstAttribute="trailing" secondItem="PBK-Z1-jNA" secondAttribute="trailing" id="Uyi-wT-u3F"/>
+                            <constraint firstItem="iL7-bf-h94" firstAttribute="leading" secondItem="JVd-Qy-mgc" secondAttribute="leading" constant="20" symbolic="YES" id="W3e-k4-z7f"/>
+                            <constraint firstAttribute="bottom" secondItem="PBK-Z1-jNA" secondAttribute="bottom" id="XeL-on-4vH"/>
+                            <constraint firstItem="PBK-Z1-jNA" firstAttribute="leading" secondItem="JVd-Qy-mgc" secondAttribute="leading" id="cTe-vq-81o"/>
+                            <constraint firstItem="tkf-Tc-jYg" firstAttribute="leading" secondItem="JVd-Qy-mgc" secondAttribute="leading" id="iRO-SB-Fid"/>
+                            <constraint firstAttribute="trailing" secondItem="tkf-Tc-jYg" secondAttribute="trailing" id="qc9-kV-zYQ"/>
+                            <constraint firstAttribute="bottom" secondItem="tkf-Tc-jYg" secondAttribute="bottom" id="tfD-sb-4jT"/>
+                            <constraint firstItem="tkf-Tc-jYg" firstAttribute="top" secondItem="JVd-Qy-mgc" secondAttribute="top" id="uan-AA-s3O"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="JVd-Qy-mgc" firstAttribute="bottom" secondItem="lAL-zS-UUt" secondAttribute="bottom" id="736-Ej-vAx"/>
+                <constraint firstItem="lAL-zS-UUt" firstAttribute="leading" secondItem="JVd-Qy-mgc" secondAttribute="leading" id="Ds3-UU-9wM"/>
+                <constraint firstItem="lAL-zS-UUt" firstAttribute="top" secondItem="JVd-Qy-mgc" secondAttribute="top" id="DzL-Fz-crf"/>
+                <constraint firstItem="JVd-Qy-mgc" firstAttribute="trailing" secondItem="lAL-zS-UUt" secondAttribute="trailing" id="sgl-JL-j9I"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="lAL-zS-UUt"/>
+            <size key="customSize" width="286" height="241"/>
+            <connections>
+                <outlet property="imgProfile" destination="tkf-Tc-jYg" id="9w6-Nj-ZFY"/>
+                <outlet property="lbName" destination="iL7-bf-h94" id="SLf-Qo-dIP"/>
+            </connections>
+            <point key="canvasLocation" x="-289" y="54"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="gradient" width="540" height="540"/>
+    </resources>
+</document>

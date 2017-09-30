@@ -1,0 +1,5 @@
+//
+//  ErrorResponse.swift
+
+import Foundation
+

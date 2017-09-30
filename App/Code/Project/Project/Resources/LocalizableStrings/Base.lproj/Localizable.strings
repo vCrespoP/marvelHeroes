@@ -1,0 +1,50 @@
+/******************************************************************************
+ *
+ * 
+ *
+ * Created by Vicente Crespo Penadés - vicente.crespo.penades@gmail.com
+ * Copyright (c) 2015 Vicente Crespo  All rights reserved.
+ *
+ ******************************************************************************/
+
+//
+// Global
+//
+
+"GLOBAL_SEARCH" = "Search";
+
+"GLOBAL_ACCEPT" = "Accept";
+"GLOBAL_CANCEL" = "Cancel";
+
+"GLOBAL_DELETE" = "Delete";
+"GLOBAL_SUCCESS" = "Success";
+
+"GLOBAL_USERNAME" = "Username";
+"GLOBAL_PASSWORD" = "Password";
+
+"GLOBAL_GENERIC_ERROR_TITLE" = "Sorry";
+"GLOBAL_GENERIC_ERROR_MESSAGE" = "Temporary unavailble, try in a few moments.";
+
+//
+// Heroes
+//
+"HEROES_TITLE" = "Heroes";
+"HEROES_WARNING_EXTERNAL_LINK_TITLE" = "Continue?";
+"HEROES_WARNING_EXTERNAL_LINK_TEXT" = "Continuing will open the link in an external app";
+
+//
+// Hero Details
+//
+"HERO_DETAILS_NAME_TITLE" = "Name";
+"HERO_DETAILS_HEIGHT_TITLE" = "Height";
+"HERO_DETAILS_REAL_NAME_TITLE" = "Real name";
+"HERO_DETAILS_POWER_TITLE" = "Power";
+"HERO_DETAILS_ABILITIES_TITLE" = "Abilities";
+"HERO_DETAILS_GROUPS_TITLE" = "Groups";
+
+//
+// Errors
+//
+
+"ERROR_NO_CONNECTION_TITLE"    = "Connection needed";
+"ERROR_NO_CONNECTION_MESSAGE"  = "Internet connection is required, check for airplane mode/data";

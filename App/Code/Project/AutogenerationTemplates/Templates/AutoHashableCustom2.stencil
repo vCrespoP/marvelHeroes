@@ -1,0 +1,59 @@
+// swiftlint:disable file_length
+
+fileprivate func combineHashes(_ hashes: [Int]) -> Int {
+    return hashes.reduce(0, combineHashValues)
+}
+
+fileprivate func combineHashValues(_ initial: Int, _ other: Int) -> Int {
+    #if arch(x86_64) || arch(arm64)
+        let magic: UInt = 0x9e3779b97f4a7c15
+    #elseif arch(i386) || arch(arm)
+        let magic: UInt = 0x9e3779b9
+    #endif
+    var lhs = UInt(bitPattern: initial)
+    let rhs = UInt(bitPattern: other)
+    lhs ^= rhs &+ magic &+ (lhs << 6) &+ (lhs >> 2)
+    return Int(bitPattern: lhs)
+}
+
+// MARK: - AutoHashableCustom2 for classes, protocols, structs
+{% for type in types.implementing.AutoHashableCustom2 %}{% if not type.kind == "enum" %}
+// MARK: - {{ type.name }} AutoHashableCustom2
+extension {{ type.name }}{% if not type.kind == "protocol" %}: Hashable{% endif %} {
+    {% if type.supertype.based.Hashable or type.supertype.implements.AutoHashableCustom2 %} THIS WONT COMPILE, WE DONT SUPPORT INHERITANCE for AutoHashableCustom2 {% endif %}
+    {{ type.accessLevel }} var hashValue: Int {
+        return combineHashes([{% for variable in type.storedVariables %}{% if not variable.annotations.skipHashing %}{% if not variable.isOptional %}{{ variable.name }}.hashValue{% else %}{{ variable.name }}?.hashValue ?? 0{% endif %}, {% endif %}{% endfor %}0])
+    }
+}
+{% endif %}{% endfor %}
+
+// MARK: - AutoHashableCustom2 for Enums
+{% for type in types.implementing.AutoHashableCustom2|enum %}
+// MARK: - {{ type.name }} AutoHashableCustom2
+extension {{ type.name }}: Hashable {
+    {{ type.accessLevel }} var hashValue: Int {
+        switch self {
+            {% for case in type.cases %}
+            {% if case.hasAssociatedValue %} case .{{ case.name }}(let data): {% else %} case .{{ case.name }}: {% endif %}
+                {% ifnot case.hasAssociatedValue %}
+                    {% if type.computedVariables.count == 0 %}
+                    return {{ forloop.counter }}.hashValue
+                    {% else %}
+                    return combineHashes([{{ forloop.counter }}, {% for variable in type.computedVariables %}{% if variable.annotations.includeInHashing %}, {{ variable.name }}.hashValue{% endif %}{% endfor %}])
+                    {% endif %}
+                {% else %}
+                    {% if case.associatedValues.count == 1 %}
+                return combineHashes([{{ forloop.counter }}{% if case.associatedValues.first.typeName.name == "Error" %}, "\(data)".hashValue]){% else %}, data.hashValue]){% endif %}
+                    {% else %}
+                return combineHashes([{{ forloop.counter }}, {% for associated in case.associatedValues %}{% if associated.typeName.name == "Error" %}"\(data)".hashValue{% else %}data.{{ associated.externalName }}.hashValue{% endif %}{% if not forloop.last %}, {% endif %}{% endfor %}
+{% for variable in type.computedVariables %}{% if variable.annotations.includeInHashing %}, {{ variable.name }}.hashValue{% endif %}{% endfor %}])
+                    {% endif %}
+                {% endif %}
+
+            {% endfor %}
+        }
+    }
+}
+{% endfor %}
+
+// MARK: -

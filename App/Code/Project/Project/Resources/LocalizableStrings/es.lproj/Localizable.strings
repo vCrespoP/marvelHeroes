@@ -1,0 +1,43 @@
+
+
+//
+// Global
+//
+
+"GLOBAL_SEARCH" = "Buscar";
+
+"GLOBAL_ACCEPT" = "Aceptar";
+"GLOBAL_CANCEL" = "Cancelar";
+
+"GLOBAL_DELETE" = "Borrar";
+"GLOBAL_SUCCESS" = "Éxito";
+
+"GLOBAL_USERNAME" = "Usuario";
+"GLOBAL_PASSWORD" = "Contraseña";
+
+"GLOBAL_GENERIC_ERROR_TITLE" = "Lo sentimos";
+"GLOBAL_GENERIC_ERROR_MESSAGE" = "Algo no va bien, inténtalo de nuevo en unos momentos.";
+
+//
+// Heroes
+//
+"HEROES_TITLE" = "Heroes";
+"HEROES_WARNING_EXTERNAL_LINK_TITLE" = "¿Continuar?";
+"HEROES_WARNING_EXTERNAL_LINK_TEXT" = "Al continuar se abrirá el enlace en una aplicación externa";
+
+//
+// Hero Details
+//
+"HERO_DETAILS_NAME_TITLE" = "Nombre";
+"HERO_DETAILS_HEIGHT_TITLE" = "Altura";
+"HERO_DETAILS_REAL_NAME_TITLE" = "Nombre real";
+"HERO_DETAILS_POWER_TITLE" = "Poder";
+"HERO_DETAILS_ABILITIES_TITLE" = "Habilidades";
+"HERO_DETAILS_GROUPS_TITLE" = "Grupos";
+
+//
+// Errors
+//
+
+"ERROR_NO_CONNECTION_TITLE"    = "Se necesita conexión";
+"ERROR_NO_CONNECTION_MESSAGE"  = "Comprueba que no tienes el modo avión y que realmente tienes una conexión de datos activa";

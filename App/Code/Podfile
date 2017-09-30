@@ -1,0 +1,218 @@
+### Configuration
+
+inhibit_all_warnings!
+use_frameworks!
+
+platform :ios, '10.0'
+
+source 'https://github.com/CocoaPods/Specs.git'
+
+project 'Project/Project.xcodeproj'
+workspace 'Marvel'
+
+def app_pods
+
+    # Version tracking
+    pod 'AppVersionMonitor'
+
+    ## User Interface
+
+    # Async image + Caching
+    pod 'Kingfisher', '~> 4.0'
+
+    # Keyboard Manager
+    pod 'IQKeyboardManager'
+    pod 'IQDropDownTextField'
+
+    # Autolayout
+    pod 'PureLayout'
+
+    # Notification messages
+    pod 'Whisper'
+
+    # Progress HUD
+    pod 'PKHUD',
+        :git => 'https://github.com/pkluz/PKHUD',
+        :branch => 'release/swift4'
+
+    # Logs
+    pod 'Log'
+
+    ### Auto-Generation
+    pod 'Sourcery', '~> 0.9.0'
+
+    ### Standard conventions
+    pod 'SwiftLint', '~> 0.18.1'
+    
+end
+
+def shared_pods
+    
+    # Reactive
+    pod 'RxSwift',
+        :git => 'https://github.com/ReactiveX/RxSwift',
+        :branch => 'rxswift4.0-swift4.0'
+    pod 'RxCocoa',
+        :git => 'https://github.com/ReactiveX/RxSwift',
+        :branch => 'rxswift4.0-swift4.0'
+    
+    # Object Mapping + JSON
+    pod 'ObjectMapper'
+    
+end
+
+
+### Main Application
+
+target 'Project' do
+    
+    shared_pods
+    app_pods
+    
+    # Test Application
+    
+    target 'ProjectTests' do
+        inherit! :search_paths
+        # pod 'Firebase/Core' # Needed for tests. Thx Google
+        
+    end
+    
+    target 'ProjectUITests' do
+        inherit! :search_paths
+        
+    end
+
+end
+
+
+
+
+### Domain
+
+target 'Domain' do
+    
+    shared_pods
+    
+    # Test Application
+    
+    target 'DomainTests' do
+        inherit! :search_paths
+        
+        
+    end
+    
+    
+end
+
+
+
+
+### Network
+
+target 'NetworkKit' do
+
+    shared_pods
+
+    target 'NetworkSpecific' do
+        inherit! :search_paths
+    end
+
+
+    target 'PlatformNetworkApi' do
+    
+        # HTTP Netwroking
+        pod 'Alamofire'
+    
+        inherit! :search_paths
+    end
+
+    target 'PlatformNetworkStatic' do
+    
+        inherit! :search_paths
+    end
+
+
+    # Reachability
+    pod 'ReachabilitySwift'
+    
+end
+
+
+
+
+
+
+
+## Post actions
+
+post_install do |installer|
+    
+    puts "Setting Swift legacy for some Pods"
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            if [
+                'Whisper',
+                'Log',
+                'ReachabilitySwift',
+                ].include?(target.name)
+                config.build_settings['SWIFT_VERSION'] = '3.2'
+            end
+        end
+        
+    end
+    
+    puts "Setting Swift flags for PODS projects"
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            if [
+                'Kingfisher',
+                'IQKeyboardManager',
+                'PureLayout',
+                'PKHUD',
+                'Sourcery',
+                'SwiftLint',
+                'RxSwift',
+                'RxCocoa',
+                'ObjectMapper',
+                'Alamofire'
+                ].include?(target.name)
+            
+            config.build_settings['SWIFT_VERSION'] = '4.0'
+            end
+        end
+    end
+    
+    installer.pods_project.targets.each do |target|
+        
+        target.build_configurations.each do |config|
+            puts "Setting Swift flags for configuration #{config.name}".green
+            
+            s = config.build_settings['OTHER_SWIFT_FLAGS']
+            
+            if s == nil
+                s = [ '$(inherited)' ]
+            end
+            
+            if config.name == 'Debug'
+                s.push('-DCONFIGURATION_Debug')
+            end
+            
+            if config.name == 'Demo'
+                s.push('-DCONFIGURATION_Demo')
+            end
+            
+            if config.name == 'Release'
+                s.push('-DCONFIGURATION_Release')
+            end
+            
+            config.build_settings['OTHER_SWIFT_FLAGS'] = s
+            puts "Set flags: #{s}".yellow
+        end
+    end
+    
+end
+
+
+
+
+

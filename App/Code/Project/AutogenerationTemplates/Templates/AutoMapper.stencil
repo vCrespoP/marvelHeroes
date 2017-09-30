@@ -1,0 +1,33 @@
+// swiftlint:disable file_length
+
+// MARK: - AutoMapper for classes and structs
+
+import ObjectMapper
+
+{% for type in types.implementing.AutoMapper %}{% if type.kind == "struct" %}
+// MARK: - {{ type.name }} Json Mapping
+extension {{ type.name }}: Mappable {
+
+    {{ type.accessLevel }} init?(map: Map) { }
+
+    mutating {{ type.accessLevel }} func mapping(map: Map) {
+        {% for variable in type.variables %}
+            {{ variable.name }} <- map["{{ variable.name }}"]
+        {% endfor %}
+    }
+
+}
+
+// MARK: Parseable
+extension {{ type.name }}: Serializable { }
+
+{% endif %}
+{% endfor %}
+
+
+
+
+
+
+
+

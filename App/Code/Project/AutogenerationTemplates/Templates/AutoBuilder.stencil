@@ -1,0 +1,16 @@
+// swiftlint:disable file_length
+
+// MARK: - AutoBuilder for classes and structs
+
+
+{% for type in types.implementing.AutoBuilder %}{% if not type.kind == "enum" and not type.kind == "protocol" %}
+// MARK: - {{ type.name }} BuilderProtocol
+extension {{ type.name }}: BuilderProtocol {
+	{{ type.accessLevel }} typealias BuilderClosure = (inout {{ type.name }}) -> Void
+	{{ type.accessLevel }} init(with: BuilderClosure) {
+		with(&self)
+	}
+}
+
+{% endif %}
+{% endfor %}

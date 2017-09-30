@@ -1,0 +1,31 @@
+// swiftlint:disable file_length
+
+// MARK: - AutoHashableCustom
+
+
+{% for type in types.implementing.AutoHashableCustom %}{% if type.kind == "struct" or type.kind == "class" %}
+// MARK: - {{ type.name }} Hashable
+extension {{ type.name }}: Hashable {
+
+    {{ type.accessLevel }} var hashValue: Int {
+        let strings = [
+            {% for variable in type.storedVariables %}
+                {% if not variable.isOptional %}
+                    "\({{ variable.name }}.hashValue)"{% if not forloop.last %},{% endif %}
+                {% endif %}
+                {% if variable.isOptional %}
+                    "\(String(describing: {{ variable.name }}?.hashValue))"{% if not forloop.last %},{% endif %}
+                {% endif %}
+            {% endfor %}
+        ]
+        let result = strings.joined(separator: ",")
+        return result.hashValue
+    }
+
+}
+
+
+{% endif %}
+{% endfor %}
+
+
