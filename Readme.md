@@ -8,6 +8,25 @@ What does it do?
 Fetches a list of superheroes, shows them in a pretty way with master-detail pattern.
 
 
+## App Overview
+
+### UITableView
+
+![alt text](images/App1.png)
+
+### UICollectionView
+
+![alt text](images/App2.png)
+
+### UICollectionView (2)
+
+![alt text](images/App3.png)
+
+### Details
+
+![alt text](images/App3.png)
+
+
 ## Features included
 
 
