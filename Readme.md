@@ -24,7 +24,7 @@ Fetches a list of superheroes, shows them in a pretty way with master-detail pat
 
 ### Details
 
-![alt text](images/App3.png)
+![alt text](images/App4.png)
 
 
 ## Features included
